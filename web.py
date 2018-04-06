@@ -11,7 +11,7 @@ from flask import render_template
 from flask import redirect
 from flask import url_for
 from flask_bootstrap import Bootstrap
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import RadioField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
@@ -21,7 +21,7 @@ bootstrap = Bootstrap(app)
 db_path = "cards.db"
 
 
-class QAForm(Form):
+class QAForm(FlaskForm):
     question = TextAreaField('Q', validators=[DataRequired()],
                              render_kw={"rows": 10, "cols": 10})
     answer = TextAreaField('A', validators=[DataRequired()],
@@ -29,7 +29,7 @@ class QAForm(Form):
     submit = SubmitField(u'add')
 
 
-class LearnForm(Form):
+class LearnForm(FlaskForm):
     quality = RadioField('Grade',
                          choices=[('0', '0'), ('1', '1'), ('2', '2'),
                                   ('3', '3'), ('4', '4'), ('5', '5')])
