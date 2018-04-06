@@ -28,10 +28,12 @@ class QAForm(FlaskForm):
 
 
 class LearnForm(FlaskForm):
-    quality = RadioField('Grade',
-                         choices=[('0', '0'), ('1', '1'), ('2', '2'),
-                                  ('3', '3'), ('4', '4'), ('5', '5')])
-    submit = SubmitField(u'YES')
+    submit0 = SubmitField(u'0 blackout')
+    submit1 = SubmitField(u'1 incorrect')
+    submit2 = SubmitField(u'2 incorrect')
+    submit3 = SubmitField(u'3 correct')
+    submit4 = SubmitField(u'4 correct')
+    submit5 = SubmitField(u'5 perfect')
 
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -54,7 +56,20 @@ def learn():
     answer = markdown(card['answer'], ['extra'])
     form = LearnForm()
     if form.validate_on_submit():
-        quality = int(form.quality.data)
+        if form.submit0.data:
+            quality = 0
+        elif form.submit1.data:
+            quality = 1
+        elif form.submit2.data:
+            quality = 2
+        elif form.submit3.data:
+            quality = 3
+        elif form.submit4.data:
+            quality = 4
+        elif form.submit5.data:
+            quality = 5
+        else:
+            pass
         sm2.trial(card, quality)
         db.update_card(card, db_path)
         return redirect(url_for('learn'))
