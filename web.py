@@ -10,6 +10,7 @@ from flask import Flask
 from flask import render_template
 from flask import redirect
 from flask import url_for
+from flask import session
 from flask_wtf import FlaskForm
 from wtforms import RadioField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
@@ -35,9 +36,10 @@ class LearnForm(FlaskForm):
     submit4 = SubmitField(u'4 correct')
     submit5 = SubmitField(u'5 perfect')
     submit6 = SubmitField(u'DELETE')
+    submit7 = SubmitField(u'EDIT')
 
 
-@app.route('/add', methods=['GET', 'POST'])
+@app.route('/add/', methods=['GET', 'POST'])
 def add():
     form = QAForm()
     if form.validate_on_submit():
@@ -45,6 +47,20 @@ def add():
         answer = form.answer.data
         db.add_card(question, answer, db_path)
         return redirect(url_for('add'))
+    return render_template('add.html', form=form)
+
+
+@app.route('/edit/', methods=['GET', 'POST'])
+def edit():
+    form = QAForm()
+    if form.validate_on_submit():
+        question = form.question.data
+        answer = form.answer.data
+        db.add_card(question, answer, db_path)
+        return redirect(url_for('learn'))
+    else:
+        form.question.data = session.get('question')
+        form.answer.data = session.get('answer')
     return render_template('add.html', form=form)
 
 
@@ -72,6 +88,11 @@ def learn():
         elif form.submit6.data:
             db.delete_card(card, db_path)
             return redirect(url_for('learn'))
+        elif form.submit7.data:
+            db.delete_card(card, db_path)
+            session['question'] = card['question']
+            session['answer'] = card['answer']
+            return redirect(url_for('edit'))
         else:
             pass
         sm2.trial(card, quality)
