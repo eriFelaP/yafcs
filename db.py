@@ -98,3 +98,10 @@ def get_card(db_path):
     card['revdate'] = datetime.strptime(card['revdate'], "%Y-%m-%d").date()
     database.close()
     return card
+
+
+def delete_card(card, db_path):
+    database = connect_db(db_path)
+    cur = database.cursor()
+    cur.execute('DELETE FROM cards WHERE id =?;', (card['id'],))
+    database.commit()

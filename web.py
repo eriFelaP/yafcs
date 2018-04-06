@@ -34,6 +34,7 @@ class LearnForm(FlaskForm):
     submit3 = SubmitField(u'3 correct')
     submit4 = SubmitField(u'4 correct')
     submit5 = SubmitField(u'5 perfect')
+    submit6 = SubmitField(u'DELETE')
 
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -68,6 +69,9 @@ def learn():
             quality = 4
         elif form.submit5.data:
             quality = 5
+        elif form.submit6.data:
+            db.delete_card(card, db_path)
+            return redirect(url_for('learn'))
         else:
             pass
         sm2.trial(card, quality)
