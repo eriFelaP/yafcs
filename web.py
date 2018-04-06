@@ -10,14 +10,12 @@ from flask import Flask
 from flask import render_template
 from flask import redirect
 from flask import url_for
-from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import RadioField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard gust'
-bootstrap = Bootstrap(app)
 db_path = "cards.db"
 
 
