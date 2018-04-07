@@ -3,73 +3,54 @@
 {% block head %}
 <link rel="stylesheet"
       href="{{ url_for('static', filename='highlight/styles/default.css') }}">
+<style type="text/css">
+  #question, #answer{
+  border-radius: 25px;
+  border: 2px solid black;
+  padding: 20px;
+  min-height: 220px;
+  width: 80%;
+  margin: 2% 2% 2% 8%;
+  }
+  #out-answer{margin: 2% 2% 2% 8%;}
+  #answer{margin: 2% 2% 2% 0%;}
+  #submit0{color: rgb(202, 60, 60);}
+  #submit1, #submit2{color:rgb(223, 117, 20);}
+  #submit3,#submit4{color: rgb(66, 184, 221);}
+  #submit5{color: rgb(28, 184, 65);}
+</style>
 {% endblock %}
 
 {% block title %}Learn{% endblock %}
 
 {% block page_content %}
-{{ question | safe }}
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-{{ answer | safe }}
-<br>
+
+<div id="question">{{ question | safe }}</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<center>***THINK!***</center>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div id="out-answer">
 <form method="POST">
-{{ form.hidden_tag() }}
-{{ form.submit0() }}
-{{ form.submit1() }}
-{{ form.submit2() }}
-{{ form.submit3() }}
-{{ form.submit4() }}
-{{ form.submit5() }}
-{{ form.submit6() }}
-{{ form.submit7() }}
+  {{ form.hidden_tag() }}
+  {{ form.submit6(class_="pure-button pure-button-active") }}
+  {{ form.submit7(class_="pure-button pure-button-active") }}
+  <div id="answer">{{ answer | safe }}</div>
+  {{ form.submit0(class_="pure-button pure-button-active") }}
+  {{ form.submit1(class_="pure-button pure-button-active") }}
+  {{ form.submit2(class_="pure-button pure-button-active") }}
+  {{ form.submit3(class_="pure-button pure-button-active") }}
+  {{ form.submit4(class_="pure-button pure-button-active") }}
+  {{ form.submit5(class_="pure-button pure-button-active") }}
 </form>
+</div>
 
 
   <script src="{{ url_for('static', filename='highlight/highlight.pack.js') }}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: "none",
     extensions: ["tex2jax.js"],
     jax: ["input/TeX", "output/HTML-CSS"],
     tex2jax: {
