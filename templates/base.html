@@ -151,6 +151,9 @@
   {% block head %}{% endblock %}
 </head>
 <body>
+  {% for message in get_flashed_messages() %}
+  {{ message }}
+  {% endfor %}
   <header>
     <h1><a href="/">Card</a> * <a href="/add">Add</a></h1>
   </header>

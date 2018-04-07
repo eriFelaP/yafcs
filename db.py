@@ -47,13 +47,13 @@ def add_card(question, answer, db_path):
         cur.execute(sql, row)
         con.commit()
     except sqlite3.IntegrityError, error:
-        print "The insert data is duplicated."
-        print error
-    except sqlite3.OperationalError, error:
-        print "Database occupied"
-        print error
-    finally:
         con.close()
+        print error
+        return "The insert data is duplicated."
+    except sqlite3.OperationalError, error:
+        con.close()
+        print error
+        return "Database occupied"
     return
 
 

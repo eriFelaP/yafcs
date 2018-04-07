@@ -11,6 +11,7 @@ from flask import render_template
 from flask import redirect
 from flask import url_for
 from flask import session
+from flask import flash
 from flask_wtf import FlaskForm
 from wtforms import RadioField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
@@ -45,7 +46,9 @@ def add():
     if form.validate_on_submit():
         question = form.question.data
         answer = form.answer.data
-        db.add_card(question, answer, db_path)
+        message = db.add_card(question, answer, db_path)
+        if message is not None:
+            flash(message)
         return redirect(url_for('add'))
     return render_template('add.html', form=form)
 
@@ -56,7 +59,9 @@ def edit():
     if form.validate_on_submit():
         question = form.question.data
         answer = form.answer.data
-        db.add_card(question, answer, db_path)
+        message = db.add_card(question, answer, db_path)
+        if message is not None:
+            flash(message)
         return redirect(url_for('learn'))
     else:
         form.question.data = session.get('question')
