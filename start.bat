@@ -1,1 +1,1 @@
-python web.py
+python web.py runserver --threaded

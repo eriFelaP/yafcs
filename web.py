@@ -12,6 +12,7 @@ from flask import redirect
 from flask import url_for
 from flask import session
 from flask import flash
+from flask_script import Manager
 from flask_wtf import FlaskForm
 from wtforms import RadioField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
@@ -19,6 +20,7 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard gust'
 db_path = "cards.db"
+manager = Manager(app)
 
 
 class QAForm(FlaskForm):
@@ -110,4 +112,4 @@ def learn():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    manager.run()
