@@ -9,4 +9,21 @@
 {{ form.answer.label }} {{ form.answer }}
 {{ form.submit() }}
 </form>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='simplemde/dist/simplemde.min.css') }}">
+<script src="{{ url_for('static', filename='simplemde/dist/simplemde.min.js') }}"></script>
+
+<script>
+  new SimpleMDE({
+  element: document.getElementById("question"),
+  spellChecker: false,
+  });
+
+  new SimpleMDE({
+  element: document.getElementById("answer"),
+  spellChecker: false,
+  });
+</script>
+
 {% endblock %}
