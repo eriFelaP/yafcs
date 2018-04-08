@@ -46,6 +46,7 @@ def add_card(question, answer, db_path):
     try:
         cur.execute(sql, row)
         con.commit()
+        con.close()
     except sqlite3.IntegrityError, error:
         con.close()
         print error
@@ -105,3 +106,4 @@ def delete_card(card, db_path):
     cur = database.cursor()
     cur.execute('DELETE FROM cards WHERE id =?;', (card['id'],))
     database.commit()
+    database.close()
