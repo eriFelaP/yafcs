@@ -32,8 +32,10 @@
 <div id="out-answer">
 <form method="POST">
   {{ form.hidden_tag() }}
-  {{ form.submit6(class_="pure-button pure-button-active") }}
+
   {{ form.submit7(class_="pure-button pure-button-active") }}
+  {{ form.submit6(class_="pure-button pure-button-active",
+  style="float: right;") }}
   <div id="answer">{{ answer | safe }}</div>
   {{ form.submit0(class_="pure-button pure-button-active") }}
   {{ form.submit1(class_="pure-button pure-button-active") }}
