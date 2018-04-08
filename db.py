@@ -64,18 +64,27 @@ def update_card(card, db_path):
     cur = database.cursor()
     sql = """UPDATE cards SET question=?,answer=?, cdate=?,efactor=?,
              reps=?, inter=?,revdate=?,trials=?,quality=? WHERE id = ?"""
-    cur.execute(sql, (card['question'],
-                      card['answer'],
-                      card['cdate'],
-                      card['efactor'],
-                      card['reps'],
-                      card['inter'],
-                      card['revdate'],
-                      card['trials'],
-                      card['quality'],
-                      card['id']))
-    database.commit()
-    database.close()
+    try:
+        cur.execute(sql, (card['question'],
+                          card['answer'],
+                          card['cdate'],
+                          card['efactor'],
+                          card['reps'],
+                          card['inter'],
+                          card['revdate'],
+                          card['trials'],
+                          card['quality'],
+                          card['id']))
+        database.commit()
+        database.close()
+    except sqlite3.IntegrityError, error:
+        database.close()
+        print error
+        return "The insert data is duplicated."
+    except sqlite3.OperationalError, error:
+        database.close()
+        print error
+        return "Database occupied"
     return
 
 

@@ -21,6 +21,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard gust'
 db_path = "cards.db"
 manager = Manager(app)
+card = db.get_card(db_path)  # global
 
 
 class QAForm(FlaskForm):
@@ -44,6 +45,7 @@ class LearnForm(FlaskForm):
 
 @app.route('/add/', methods=['GET', 'POST'])
 def add():
+    global card
     form = QAForm()
     if form.validate_on_submit():
         question = form.question.data
@@ -51,29 +53,32 @@ def add():
         message = db.add_card(question, answer, db_path)
         if message is not None:
             flash(message)
+        card = db.get_card(db_path)
         return redirect(url_for('add'))
     return render_template('add.html', form=form)
 
 
 @app.route('/edit/', methods=['GET', 'POST'])
 def edit():
+    global card
     form = QAForm()
     if form.validate_on_submit():
-        question = form.question.data
-        answer = form.answer.data
-        message = db.add_card(question, answer, db_path)
+        card['question'] = form.question.data
+        card['answer'] = form.answer.data
+        message = db.update_card(card, db_path)
         if message is not None:
             flash(message)
+            card = db.get_card(db_path)
         return redirect(url_for('learn'))
     else:
-        form.question.data = session.get('question')
-        form.answer.data = session.get('answer')
+        form.question.data = card['question']
+        form.answer.data = card['answer']
     return render_template('add.html', form=form)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def learn():
-    card = db.get_card(db_path)
+    global card
     if card is None:
         return render_template('NoCard.html')
     question = markdown(card['question'], ['extra'])
@@ -94,16 +99,15 @@ def learn():
             quality = 5
         elif form.submit6.data:
             db.delete_card(card, db_path)
+            card = db.get_card(db_path)
             return redirect(url_for('learn'))
         elif form.submit7.data:
-            db.delete_card(card, db_path)
-            session['question'] = card['question']
-            session['answer'] = card['answer']
             return redirect(url_for('edit'))
         else:
             pass
         sm2.trial(card, quality)
         db.update_card(card, db_path)
+        card = db.get_card(db_path)
         return redirect(url_for('learn'))
     return render_template('learn.html',
                            question=question,
