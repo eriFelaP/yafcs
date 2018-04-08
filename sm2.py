@@ -85,8 +85,8 @@ def trial(card, quality):
         review(card, quality)
     else:
         card['trials'] += 1
-        card['quality'] += float(quality) / 3
-    if card['trials'] >= 3:
+        card['quality'] += float(quality) / 2
+    if card['trials'] >= 2:
         review(card, card['quality'])
     return
 
