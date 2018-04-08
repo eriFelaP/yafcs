@@ -3,10 +3,37 @@
 {% block title %}Add{% endblock %}
 
 {% block page_content %}
+
+<script>
+var quotes = new Array()
+Array[0] = "Learn before you memorize"
+quotes[1] = "Build upon the basics"
+quotes[2] = "Learn before you memorize"
+quotes[3] = "Stick to the minimum information principle"
+quotes[4] = "Cloze deletion is easy and effective"
+quotes[5] = "Use imagery"
+quotes[6] = "Use mnemonic techniques"
+quotes[7] = "Graphic deletion is as good as cloze deletion"
+quotes[8] = "Avoid sets"
+quotes[9] = "Avoid enumerations"
+quotes[10] = "Combat interference"
+quotes[11] = "Optimize wording"
+quotes[12] = "Refer to other memories"
+quotes[13] = "Personapze and provide examples"
+quotes[14] = "Rely on emotional states"
+quotes[15] = "Context cues simppfy wording"
+quotes[16] = "Redundancy does not contradict minimum information principle"
+quotes[17] = "Provide sources"
+quotes[18] = "Provide date stamping"
+quotes[19] = "Prioritize"
+index = Math.floor(Math.random()*20)
+document.write("<center><blockquote>" + quotes[index] + "</blockquote></center>")
+</script>
+
 <form method="POST">
 {{ form.hidden_tag() }}
-{{ form.question.label }} {{ form.question }}
-{{ form.answer.label }} {{ form.answer }}
+<h1>{{ form.question.label }}</h1> {{ form.question }}
+<h1>{{ form.answer.label }}</h1> {{ form.answer }}
 {{ form.submit(class_="pure-button pure-button-active") }}
 </form>
 
