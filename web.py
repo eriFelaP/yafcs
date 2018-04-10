@@ -76,6 +76,14 @@ def edit():
     return render_template('add.html', form=form)
 
 
+@app.route('/statistics/', methods=['GET', 'POST'])
+def statistics():
+    today_cards, all_cards = db.statistics_cards(db_path)
+    return render_template('statistics.html',
+                           today_cards=today_cards,
+                           all_cards=all_cards)
+
+
 @app.route('/', methods=['GET', 'POST'])
 def learn():
     global card

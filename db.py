@@ -116,3 +116,17 @@ def delete_card(card, db_path):
     cur.execute('DELETE FROM cards WHERE id =?;', (card['id'],))
     database.commit()
     database.close()
+
+
+def statistics_cards(db_path):
+    database = connect_db(db_path)
+    cur = database.cursor()
+    cur.execute(
+        "SELECT Count(*) FROM cards WHERE julianday(revdate) <= julianday('now')")
+    today_cards = cur.fetchone()[0]
+    cur.execute(
+        "SELECT Count(*) FROM cards")
+    all_cards = cur.fetchone()[0]
+    database.commit()
+    database.close()
+    return today_cards, all_cards
