@@ -5,6 +5,7 @@
 
 import db
 import sm2
+import tools
 from markdown import markdown
 from flask import Flask
 from flask import render_template
@@ -22,6 +23,8 @@ app.config['SECRET_KEY'] = 'hard gust'
 db_path = "cards.db"
 manager = Manager(app)
 card = db.get_card(db_path)  # global
+
+tools.backup_db()
 
 
 class QAForm(FlaskForm):
