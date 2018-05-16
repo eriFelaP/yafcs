@@ -4,3 +4,4 @@ bak/*
 !bak/.gitkeep
 FlashCards.md
 static/cards/*
+!static/cards/.gitkeep
