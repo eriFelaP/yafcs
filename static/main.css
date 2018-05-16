@@ -124,6 +124,7 @@ td > a:hover {
     cursor: pointer;
 }
 
+
 #post {
     margin: 2% 0% 0% 0%;
     text-align: center;
@@ -140,6 +141,12 @@ td > a:hover {
     width: 80%;
     margin: 2% 2% 2% 8%;
 }
+
+#answer{
+    margin: 2% 0% 2% 0%;
+    width: 90%;
+}
+
 #out-answer{margin: 2% 2% 2% 8%;}
 #answer{margin: 2% 2% 2% 0%;}
 #submit0{color: rgb(202, 60, 60);}

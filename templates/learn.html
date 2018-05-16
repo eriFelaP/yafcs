@@ -11,9 +11,16 @@
 {% block page_content %}
 
 <div id="question">{{ question | safe }}</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<center>***THINK!***</center>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<details>
+  <summary>
+    <center>
+      <button class=="pure-button pure-button-active">
+        Look at the answer after think about it
+      </button>
+    </center>
+  </summary>
+
 <div id="out-answer">
 <form method="POST">
   {{ form.hidden_tag() }}
@@ -30,7 +37,7 @@
   {{ form.submit5(class_="pure-button pure-button-active") }}
 </form>
 </div>
-
+</details>
 
   <script src="{{ url_for('static', filename='highlight/src/highlight.pack.js') }}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
