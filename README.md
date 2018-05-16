@@ -16,3 +16,17 @@ If you are looking for a flashcard software, I recommend Anki and Mnemosyne.
   * `pip install -r requirements.txt`
   * `./start.sh` (on Linux) or `start.bat` (on Windows)
   * Open url http://127.0.0.1:5000/
+
+# Screenshot
+
+## Add a flashcard
+
+![](./screenshot/sc1.png)
+
+## Statistics
+
+![](./screenshot/sc2.png)
+
+## Learn flashcards
+
+![](./screenshot/sc3.png)
