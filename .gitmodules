@@ -1,0 +1,12 @@
+[submodule "static/pure"]
+	path = static/pure
+	url = https://github.com/pure-css/pure-release.git
+[submodule "static/highlight"]
+	path = static/highlight
+	url = https://github.com/isagalaev/highlight.js.git
+[submodule "static/simplemde"]
+	path = static/simplemde
+	url = https://github.com/sparksuite/simplemde-markdown-editor.git
+[submodule "static/mathjax"]
+	path = static/mathjax
+	url = https://github.com/mathjax/MathJax.git

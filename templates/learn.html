@@ -2,7 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet"
-      href="{{ url_for('static', filename='highlight/styles/default.css') }}">
+      href="{{ url_for('static', filename='highlight/src/styles/default.css') }}">
 <style type="text/css">
   #question, #answer{
   border-radius: 25px;
@@ -47,7 +47,7 @@
 </div>
 
 
-  <script src="{{ url_for('static', filename='highlight/highlight.pack.js') }}"></script>
+  <script src="{{ url_for('static', filename='highlight/src/highlight.pack.js') }}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
