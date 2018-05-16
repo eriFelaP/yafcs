@@ -24,6 +24,7 @@ db_path = "cards.db"
 manager = Manager(app)
 card = db.get_card(db_path)  # global
 
+tools.export_cards(db_path)
 tools.backup_db()
 
 
