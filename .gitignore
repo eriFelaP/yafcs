@@ -1,5 +1,6 @@
 *.pyc
 cards.db
-bak/
+bak/*
+!bak/.gitkeep
 FlashCards.md
 static/cards/*
