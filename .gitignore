@@ -1,2 +1,5 @@
 *.pyc
 cards.db
+bak/
+FlashCards.md
+static/cards/*
