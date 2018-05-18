@@ -137,7 +137,7 @@ td > a:hover {
     border-radius: 25px;
     border: 2px solid black;
     padding: 20px;
-    min-height: 220px;
+    min-height: 110px;
     width: 80%;
     margin: 2% 2% 2% 8%;
 }
@@ -153,3 +153,16 @@ td > a:hover {
 #submit1, #submit2{color:rgb(223, 117, 20);}
 #submit3,#submit4{color: rgb(66, 184, 221);}
 #submit5{color: rgb(28, 184, 65);}
+
+
+summary {
+    border: 2px solid gray;
+    align: center;
+    text-align: center;
+    margin: 2% 20%;
+}
+
+summary:hover {
+    color: green;
+    cursor: pointer;
+}
