@@ -5,3 +5,5 @@ bak/*
 FlashCards.md
 static/cards/*
 !static/cards/.gitkeep
+log/*
+!log/.gitkeep

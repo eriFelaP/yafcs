@@ -119,6 +119,7 @@ def learn():
             pass
         sm2.trial(card, quality)
         db.update_card(card, db_path)
+        tools.add_log(card, quality)
         card = db.get_card(db_path)
         return redirect(url_for('learn'))
     return render_template('learn.html',

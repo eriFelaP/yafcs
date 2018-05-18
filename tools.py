@@ -6,6 +6,7 @@
 import shutil
 import datetime
 import db
+import csv
 
 
 def backup_db():
@@ -46,3 +47,21 @@ documentclass: ctexart
     with open('FlashCards.md', "w") as fil:
         fil.write(txt)
     return
+
+
+def add_log(card, quality):
+    now_time = datetime.datetime.now()
+    log_time = now_time.strftime("%Y-%m-%d-%H-%M-%S")
+    logfile = "./log/log" + now_time.strftime("%Y-%m") + ".csv"
+    with open(logfile, "a") as fil:
+        csvfil = csv.writer(fil)
+        csvfil.writerow([card['id'],
+                         log_time,
+                         quality,
+                         card['cdate'],
+                         card['efactor'],
+                         card['reps'],
+                         card['inter'],
+                         card['revdate'],
+                         card['trials'],
+                         card['quality']])
