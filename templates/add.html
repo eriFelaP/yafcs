@@ -5,8 +5,8 @@
 {% block page_content %}
 
 <script>
-var quotes = new Array()
-Array[0] = "Learn before you memorize"
+const quotes = new Array()
+quotes[0] = "Learn before you memorize"
 quotes[1] = "Build upon the basics"
 quotes[2] = "Learn before you memorize"
 quotes[3] = "Stick to the minimum information principle"
@@ -26,7 +26,7 @@ quotes[16] = "Redundancy does not contradict minimum information principle"
 quotes[17] = "Provide sources"
 quotes[18] = "Provide date stamping"
 quotes[19] = "Prioritize"
-index = Math.floor(Math.random()*19.99)
+index = Math.floor(Math.random()*20)
 document.write("<center><blockquote>" + quotes[index] + "</blockquote></center>")
 </script>
 
