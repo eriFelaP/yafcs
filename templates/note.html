@@ -10,31 +10,9 @@
 
 {% block page_content %}
 
-<div id="question">{{ question | safe }}</div>
+<div id="question">{{ note_content | safe }}</div>
 
-<details>
-  <summary>
-        Look at the answer after think about it
-  </summary>
 
-<div id="out-answer">
-<form method="POST">
-  {{ form.hidden_tag() }}
-
-  {{ form.submit7(class_="pure-button pure-button-active") }}
-  {{ form.submit8(class_="pure-button pure-button-active") }}
-  {{ form.submit6(class_="pure-button pure-button-active",
-  style="float: right;") }}
-  <div id="answer">{{ answer | safe }}</div>
-  {{ form.submit0(class_="pure-button pure-button-active") }}
-  {{ form.submit1(class_="pure-button pure-button-active") }}
-  {{ form.submit2(class_="pure-button pure-button-active") }}
-  {{ form.submit3(class_="pure-button pure-button-active") }}
-  {{ form.submit4(class_="pure-button pure-button-active") }}
-  {{ form.submit5(class_="pure-button pure-button-active") }}
-</form>
-</div>
-</details>
 
   <script src="{{ url_for('static', filename='highlight/src/highlight.js') }}"></script>
   <script>hljs.initHighlightingOnLoad();</script>

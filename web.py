@@ -33,6 +33,8 @@ class QAForm(FlaskForm):
                              render_kw={"rows": 10, "cols": 10})
     answer = TextAreaField('A', validators=[DataRequired()],
                            render_kw={"rows": 10, "cols": 10})
+    note = TextAreaField('N', validators=[DataRequired()],
+                          render_kw={"rows": 1, "cols": 10})
     submit = SubmitField(u'add')
 
 
@@ -45,6 +47,7 @@ class LearnForm(FlaskForm):
     submit5 = SubmitField(u'5 perfect')
     submit6 = SubmitField(u'DELETE')
     submit7 = SubmitField(u'EDIT')
+    submit8 = SubmitField(u'NOTE')
 
 
 @app.route('/add/', methods=['GET', 'POST'])
@@ -54,11 +57,14 @@ def add():
     if form.validate_on_submit():
         question = form.question.data
         answer = form.answer.data
-        message = db.add_card(question, answer, db_path)
+        note = form.note.data
+        message = db.add_card(question, answer,note, db_path)
         if message is not None:
             flash(message)
         card = db.get_card(db_path)
         return redirect(url_for('add'))
+    else:
+        form.note.data = 'default'
     return render_template('add.html', form=form)
 
 
@@ -69,6 +75,7 @@ def edit():
     if form.validate_on_submit():
         card['question'] = form.question.data
         card['answer'] = form.answer.data
+        card['note'] = form.note.data
         message = db.update_card(card, db_path)
         if message is not None:
             flash(message)
@@ -77,6 +84,7 @@ def edit():
     else:
         form.question.data = card['question']
         form.answer.data = card['answer']
+        form.note.data = card['note']
     return render_template('add.html', form=form)
 
 
@@ -115,6 +123,8 @@ def learn():
             return redirect(url_for('learn'))
         elif form.submit7.data:
             return redirect(url_for('edit'))
+        elif form.submit8.data:
+            return redirect(url_for('note'))
         else:
             pass
         sm2.trial(card, quality)
@@ -127,6 +137,16 @@ def learn():
                            answer=answer,
                            form=form)
 
+@app.route('/note/', methods=['GET', 'POST'])
+def note():
+    global card
+    note_path = "./note/" + card['note'] + ".md"
+    with open(note_path) as fil:
+        content = fil.read()
+        content = content.decode('utf-8')
+        note_content = markdown(content, ['extra'])
+    return render_template('note.html',
+                           note_content = note_content)
 
 if __name__ == '__main__':
     manager.run()

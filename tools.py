@@ -42,7 +42,7 @@ documentclass: ctexart
         question = row[1] + "\n"
         answer = row[2] + "\n"
         txt += title + question + "\n\n-----\n\n" + answer
-    txt = txt.encode('utf-8')
+    txt = str(txt.encode('utf-8'))
     txt = txt.replace("/static/cards/", "./static/cards/")
     with open('FlashCards.md', "w") as fil:
         fil.write(txt)

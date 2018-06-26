@@ -8,5 +8,6 @@ CREATE TABLE `cards` (
 	`inter`	INTEGER NOT NULL,
 	`revdate`	TEXT NOT NULL,
 	`trials`    INTEGER NOT NULL,
-	`quality`   REAL NOT NULL CHECK(quality >= 0 AND quality <= 5)
+	`quality`   REAL NOT NULL CHECK(quality >= 0 AND quality <= 5),
+    `note` TEXT NOT NULL
 );

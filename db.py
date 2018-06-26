@@ -30,11 +30,12 @@ def connect_db(path):
     return database
 
 
-def add_card(question, answer, db_path):
+def add_card(question, answer,note, db_path):
     """Add a card into sqlite3 database"""
     card = create_card()
     card['question'] = question
     card['answer'] = answer
+    card['note'] = note
 
     con = connect_db(db_path)
     cur = con.cursor()
@@ -47,13 +48,13 @@ def add_card(question, answer, db_path):
         cur.execute(sql, row)
         con.commit()
         con.close()
-    except sqlite3.IntegrityError, error:
+    except sqlite3.IntegrityError as error:
         con.close()
-        print error
+        print(error)
         return "The insert data is duplicated."
-    except sqlite3.OperationalError, error:
+    except sqlite3.OperationalError as error:
         con.close()
-        print error
+        print(error)
         return "Database occupied"
     return
 
@@ -63,7 +64,7 @@ def update_card(card, db_path):
     database = connect_db(db_path)
     cur = database.cursor()
     sql = """UPDATE cards SET question=?,answer=?, cdate=?,efactor=?,
-             reps=?, inter=?,revdate=?,trials=?,quality=? WHERE id = ?"""
+             reps=?, inter=?,revdate=?,trials=?,quality=?, note=? WHERE id = ?"""
     try:
         cur.execute(sql, (card['question'],
                           card['answer'],
@@ -74,16 +75,17 @@ def update_card(card, db_path):
                           card['revdate'],
                           card['trials'],
                           card['quality'],
+                          card['note'],
                           card['id']))
         database.commit()
         database.close()
-    except sqlite3.IntegrityError, error:
+    except sqlite3.IntegrityError as error:
         database.close()
-        print error
+        print(error)
         return "The insert data is duplicated."
-    except sqlite3.OperationalError, error:
+    except sqlite3.OperationalError as error:
         database.close()
-        print error
+        print(error)
         return "Database occupied"
     return
 
@@ -91,7 +93,7 @@ def update_card(card, db_path):
 def get_card(db_path):
     """Get the card to review"""
     sql = """SELECT id, question, answer, cdate, efactor,
-             reps, inter, revdate, trials, quality
+             reps, inter, revdate, trials, quality, "note"
              FROM cards
              WHERE julianday(revdate) <= julianday('now')
              ORDER BY random() limit 1"""
@@ -99,7 +101,7 @@ def get_card(db_path):
     cur = database.cursor()
     cur.execute(sql)
     header = ("id", "question", "answer", "cdate", "efactor",
-              "reps", "inter", "revdate", "trials", "quality")
+              "reps", "inter", "revdate", "trials", "quality", "note")
     row = cur.fetchone()
     if row is None:
         return None
