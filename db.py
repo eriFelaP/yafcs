@@ -105,7 +105,7 @@ def get_card(db_path):
     row = cur.fetchone()
     if row is None:
         return None
-    card = dict(zip(header, row))
+    card = dict(list(zip(header, row)))
     card['cdate'] = datetime.strptime(card['cdate'], "%Y-%m-%d").date()
     card['revdate'] = datetime.strptime(card['revdate'], "%Y-%m-%d").date()
     database.close()

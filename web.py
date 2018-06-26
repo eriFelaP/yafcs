@@ -39,15 +39,15 @@ class QAForm(FlaskForm):
 
 
 class LearnForm(FlaskForm):
-    submit0 = SubmitField(u'0 blackout')
-    submit1 = SubmitField(u'1 incorrect')
-    submit2 = SubmitField(u'2 incorrect')
-    submit3 = SubmitField(u'3 correct')
-    submit4 = SubmitField(u'4 correct')
-    submit5 = SubmitField(u'5 perfect')
-    submit6 = SubmitField(u'DELETE')
-    submit7 = SubmitField(u'EDIT')
-    submit8 = SubmitField(u'NOTE')
+    submit0 = SubmitField('0 blackout')
+    submit1 = SubmitField('1 incorrect')
+    submit2 = SubmitField('2 incorrect')
+    submit3 = SubmitField('3 correct')
+    submit4 = SubmitField('4 correct')
+    submit5 = SubmitField('5 perfect')
+    submit6 = SubmitField('DELETE')
+    submit7 = SubmitField('EDIT')
+    submit8 = SubmitField('NOTE')
 
 
 @app.route('/add/', methods=['GET', 'POST'])
