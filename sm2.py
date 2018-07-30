@@ -5,6 +5,7 @@
 https://www.supermemo.com/english/ol/sm2.htm
 """
 
+import math
 from datetime import datetime, date, timedelta
 
 
@@ -72,7 +73,7 @@ def review(card, quality):
 
     card['trials'] = 0
     card['quality'] = 0
-    card['revdate'] = card['cdate'] + timedelta(days=int(card['inter']))
+    card['revdate'] = card['cdate'] + timedelta(days=math.ceil(card['inter']))
     return
 
 

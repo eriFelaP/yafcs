@@ -34,7 +34,7 @@ document.write("<center><blockquote>" + quotes[index] + "</blockquote></center>"
 {{ form.hidden_tag() }}
 <h1>{{ form.question.label }}</h1> {{ form.question }}
 <h1>{{ form.answer.label }}</h1> {{ form.answer }}
-<h1>{{ form.note.label }}</h1> {{ form.note }}
+<p>{{ form.note }}</p>
 {{ form.submit(class_="pure-button pure-button-active") }}
 </form>
 

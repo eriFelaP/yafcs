@@ -34,7 +34,7 @@ class QAForm(FlaskForm):
     answer = TextAreaField('A', validators=[DataRequired()],
                            render_kw={"rows": 10, "cols": 10})
     note = TextAreaField('N', validators=[DataRequired()],
-                          render_kw={"rows": 1, "cols": 10})
+                          render_kw={"rows": 1, "cols": 80})
     submit = SubmitField(u'add')
 
 
